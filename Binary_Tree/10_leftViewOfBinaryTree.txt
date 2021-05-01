@@ -1,0 +1,57 @@
+// RECURSIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+int maxLevel = 0;
+void _leftView(vector<int>& leftVector, Node* root, int level)
+{
+    if (root == NULL)
+        return;
+ 
+    if (maxLevel < level) {
+        leftVector.push_back(root->data);
+        maxLevel = level;
+    }
+ 
+    _leftView(leftVector, root->left, level + 1);
+    _leftView(leftVector, root->right, level + 1);
+}
+ 
+vector<int> leftView(Node* root)
+{
+    maxLevel = 0;
+    vector<int> leftVector;
+    _leftView(leftVector, root, 1);
+    return leftVector;
+}
+
+
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(W) => W = maximum number of nodes at a given level 
+
+vector<int> leftView(Node *root)
+{
+    if(!root)
+        return {};
+    queue<Node*> nodeQueue;
+    vector<int> leftVector;
+    nodeQueue.push(root);
+    while(!nodeQueue.empty()) {
+        int size = nodeQueue.size();
+        for(int i = 0; i < size; i++) {
+            Node* node = nodeQueue.front();
+            if(i == 0) {
+                leftVector.push_back(node->data);            
+            }
+            if(node->left) {
+                nodeQueue.push(node->left);
+            }
+            if(node->right) {
+                nodeQueue.push(node->right);
+            }
+            nodeQueue.pop();
+        }
+    }
+    return leftVector;
+}

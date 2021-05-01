@@ -1,0 +1,14 @@
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int height(struct Node* root)
+{
+    if(root == NULL)
+        return 0;
+    
+    int leftHeight = 1 + height(root->left);
+    int rightHeight = 1 + height(root->right);
+    
+    return max(leftHeight, rightHeight);
+}

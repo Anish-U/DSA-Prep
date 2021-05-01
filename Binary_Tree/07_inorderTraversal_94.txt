@@ -1,0 +1,49 @@
+// RECURSIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+void _inorderTraversal(TreeNode* root, vector<int>& nodeVector) {
+    if(root == NULL)
+        return;
+    // 1. Traverse the left subtree, i.e., call Inorder(left-subtree)
+    _inorderTraversal(root->left, nodeVector);
+
+    // 2. Visit the root.
+    nodeVector.push_back(root->val);
+
+    // 3. Traverse the right subtree, i.e., call Inorder(right-subtree)
+    _inorderTraversal(root->right, nodeVector);
+}
+vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> nodeVector;
+    _inorderTraversal(root, nodeVector);
+    
+    return nodeVector;
+}
+
+
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+vector<int> inorderTraversal(TreeNode* root) {
+    if(root == NULL)
+        return {};
+    vector<int> nodeVector;
+    stack<TreeNode*> nodeStack;
+    TreeNode* curr = root;
+
+    while(!nodeStack.empty() || curr) {
+        if(curr) {
+            nodeStack.push(curr);
+            curr = curr->left;
+        }
+        else {
+            curr = nodeStack.top();
+            nodeStack.pop();
+            nodeVector.push_back(curr->val);
+            curr = curr->right;
+        }
+    }
+    return nodeVector;
+}

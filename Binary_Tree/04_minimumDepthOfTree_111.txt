@@ -1,0 +1,49 @@
+// OPTIMUM APPROACH WITH RECURSION
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int minDepth(TreeNode* root) {
+    // Base Condition
+    if(root == NULL)
+        return 0;
+    
+    // Recursive Calls
+    int left = minDepth(root->left);
+    int right = minDepth(root->right);
+    
+    // Skewed Tree Condition
+    if(left == 0 || right == 0)
+        return 1 + max(left, right);
+    
+    return 1 + min(left, right);
+}
+
+
+// OPTIMUM APPROACH WITH QUEUE
+// TC: O(N) => Visiting all nodes
+// SC: O(W) => W = maximum number of nodes at a given level 
+
+int minDepth(TreeNode* root) {
+    if(root == NULL) 
+        return 0;
+    queue<TreeNode*> nodeQueue;
+    int count{};
+    nodeQueue.push(root);
+    while(!nodeQueue.empty())
+    {
+        count++;
+        int size = nodeQueue.size();
+        for(int i = 0; i < size; i++)
+        {
+            TreeNode *node = nodeQueue.front();                
+            if(node->left == NULL && node->right == NULL) 
+                return count; 
+            if(node->left != NULL) 
+                nodeQueue.push(node->left); 
+            if(node->right != NULL) 
+                nodeQueue.push(node->right); 
+            nodeQueue.pop();
+        }
+    }
+    return count;
+}

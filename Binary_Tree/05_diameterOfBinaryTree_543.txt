@@ -1,0 +1,46 @@
+// OPTIMUM APPROACH - I
+// TC: O(N^2) => O(N)- height() * O(N)- diameter() 
+// SC: O(N)
+int height(Node* root) {
+    if (root == NULL) 
+        return 0;
+    return max(height(root->left), height(root->right)) + 1;
+}
+
+int diameter(Node* root)
+{
+    if(root == NULL)
+        return 0;
+        
+    int currAns = height(root->left) + height(root->right) + 1;
+    int leftSubTree = diameter(root->left);
+    int rightSubTree = diameter(root->right);
+    
+    return max(currAns, max(rightSubTree, leftSubTree));   
+}
+
+
+// OPTIMUM APPROACH - II
+// TC: O(N) => Visiting all nodes
+// SC: O(N)
+
+int ans = 1;
+int height(Node* root){
+    if(root == NULL)
+        return 0;
+
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+
+    ans = max(ans, 1 + leftHeight + rightHeight);
+    
+    return 1 + max(leftHeight, rightHeight);
+}
+
+int diameter(Node* root)
+{
+    if(root == NULL)
+        return 0;
+    height(root);
+    return ans;
+}

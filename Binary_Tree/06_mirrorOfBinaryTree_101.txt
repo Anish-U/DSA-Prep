@@ -1,0 +1,53 @@
+// OPTIMUM APPROACH WITH RECURSION
+// TC: O(N) => Visiting all nodes
+// SC: O(N)
+
+bool isSame(TreeNode* leftRoot, TreeNode* rightRoot) {
+    if(leftRoot == NULL || rightRoot == NULL) {
+        return leftRoot == NULL && rightRoot == NULL;
+    }
+    else if(leftRoot->val == rightRoot->val) {
+        return isSame(leftRoot->right, rightRoot->left) && isSame(leftRoot->left, rightRoot->right);
+    }
+    return false;
+}
+
+bool isSymmetric(TreeNode* root) {
+    return isSame(root->left, root->right);
+}
+
+
+// OPTIMUM APPROACH WITH QUEUE
+// TC: O(N) => Visiting all nodes
+// SC: O(W) => W = maximum number of nodes at a given level 
+
+bool isSymmetric(TreeNode* root)
+{
+    if (root == NULL) 
+        return true;
+
+    queue<TreeNode*> nodeQueue;
+    nodeQueue.push(root->left);
+    nodeQueue.push(root->right);
+
+    while (!nodeQueue.empty())
+    {
+        TreeNode* nodeLeft = nodeQueue.front();
+        nodeQueue.pop();
+        TreeNode* nodeRight = nodeQueue.front();
+        nodeQueue.pop();
+
+        if (nodeLeft == NULL && nodeRight == NULL) 
+            continue;
+        if (nodeLeft == NULL || nodeRight == NULL) 
+            return false;
+        if (nodeLeft->val != nodeRight->val) 
+            return false;
+
+        nodeQueue.push(nodeLeft->left);
+        nodeQueue.push(nodeRight->right);
+        nodeQueue.push(nodeLeft->right);
+        nodeQueue.push(nodeRight->left);
+    }
+    return true;
+}

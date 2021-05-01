@@ -1,0 +1,60 @@
+// NAIVE APPROACH
+// TC: O(N^2) => Skewed Tree - O(N)*O(N-1)*.....*O(1) ≈ O(N^2) 
+// SC: O(N)
+
+void pushGivenLevel(Node* root, int level, vector<int> &levelVector)
+{
+    if (root == NULL)
+        return;
+    if (level == 1)
+        levelVector.push_back(root->data);
+    else if (level > 1)
+    {
+        pushGivenLevel(root->left, level-1, levelVector);
+        pushGivenLevel(root->right, level-1, levelVector);
+    }
+}
+
+int height(Node* root) {
+    if(root == NULL)
+        return 0;
+    
+    int left = height(root->left) + 1;
+    int right = height(root->right) + 1;
+    
+    return max(left, right);
+}
+
+vector<int> levelOrder(Node* root)
+{        
+    vector<int> levelVector;
+    int h = height(root);
+    int i;
+    for (i = 1; i <= h; i++)
+        pushGivenLevel(root, i, levelVector);
+    
+    return levelVector;
+}
+
+
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N)
+
+vector<int> levelOrder(Node *node)
+{
+  vector<int> levelVector;
+  queue<Node *> nodeQueue;
+  nodeQueue.push(node);
+  while (!nodeQueue.empty())
+  {
+    Node *currNode = nodeQueue.front();
+    levelVector.push_back(currNode->data);
+    if (currNode->left)
+      nodeQueue.push(currNode->left);
+    if (currNode->right)
+      nodeQueue.push(currNode->right);
+    nodeQueue.pop();
+  }
+  return levelVector;
+}
