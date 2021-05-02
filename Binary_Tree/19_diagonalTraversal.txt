@@ -1,0 +1,24 @@
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+vector<int> diagonal(Node *root) {
+  vector<int> diagonalVector;
+  if(!root)
+    return diagonalVector;
+  queue<Node*> nodeQueue;
+
+  nodeQueue.push(root);
+
+  while(!nodeQueue.empty()) {
+    Node* temp = nodeQueue.front();
+    nodeQueue.pop();
+    while(temp) {
+        diagonalVector.push_back(temp->data);
+        if(temp->left)
+            nodeQueue.push(temp->left);
+        temp = temp->right;
+    }
+  }
+  return diagonalVector;
+}

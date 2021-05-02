@@ -1,0 +1,46 @@
+/ RECURSIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+
+TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+  if(!cloned)
+    return NULL;
+  
+  if(cloned->val == target->val)
+    return cloned;
+  
+  TreeNode* left = getTargetCopy(original->left,cloned->left,target);
+
+  if(left)
+    return left;
+
+  return getTargetCopy(original->right,cloned->right,target);
+}
+
+
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+  TreeNode* curr1 = original;
+  TreeNode* curr2 = cloned;
+
+  queue<pair<TreeNode*, TreeNode*>> nodeQueue;
+  nodeQueue.push({original, cloned});
+
+  while(!nodeQueue.empty()) {
+    curr1 = nodeQueue.front().first;
+    curr2 = nodeQueue.front().second;
+    if(curr1 == target) {
+      break;
+    }
+    nodeQueue.pop();
+    if(curr1->left)
+      nodeQueue.push({curr1->left, curr2->left});
+    if(curr1->right)
+      nodeQueue.push({curr1->right, curr2->right});
+  }
+  return curr2;
+}

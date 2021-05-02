@@ -1,0 +1,51 @@
+// NAIVE APPROACH
+// TC: O(N^2) => O(N)- Visiting all nodes * O(N)- Finding height
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int height(Node* root) {
+  if(!root)
+    return 0;
+
+  int left = height(root->left);
+  int right = height(root->right);
+
+  return max(left, right) + 1;
+}
+
+bool isBalanced(Node *root) {
+  if(!root)
+    return true;
+
+  int left = height(root->left);
+  int right = height(root->right);
+
+  if(abs(left - right) <= 1 && isBalanced(root->left) && isBalanced(root->right))
+    return true;
+    
+  return false;
+}
+
+
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+bool flag = true;
+int height(Node* root) {
+  if(!root)
+    return 0;
+  
+  int left = height(root->left);
+  int right = height(root->right);
+  
+  if(abs(left - right) > 1)
+    flag = false;
+  
+  return max(left, right) + 1;
+}
+
+bool isBalanced(Node *root) {
+  flag = true;
+  height(root); 
+  return flag;
+}

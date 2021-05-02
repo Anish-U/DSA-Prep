@@ -1,0 +1,90 @@
+// NAIVE APPROACH
+// TC: O(N) => O(N)- heightOfTree() + O(N)- _deepestLeavesSum() ≈ O(N)
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int heightOfTree(TreeNode* root) {
+    if(!root)
+        return 0;
+    int left = heightOfTree(root->left) + 1;
+    int right = heightOfTree(root->right) + 1;
+    
+    return max(left, right);
+}
+
+void _deepestLeavesSum(TreeNode* root, int curr, int& height, int& sum) {
+    if(!root)
+        return;
+    if(curr == height) {
+        sum += root->val;
+    }
+    _deepestLeavesSum(root->left, curr + 1, height, sum);
+    _deepestLeavesSum(root->right, curr + 1, height, sum);
+}
+
+int deepestLeavesSum(TreeNode* root) {
+    int height = heightOfTree(root);
+    int sum{};
+    _deepestLeavesSum(root, 1, height, sum);
+    
+    return sum;
+}
+
+
+// OPTIMUM APPROACH WITH RECURSION
+// TC: O(N) => O(N)- _deepestLeavesSum() ≈ O(N)
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int max_height = 0;
+int sum = 0;    
+void _deepestLeavesSum(TreeNode* root, int height) {
+    if(!root)
+        return;
+    
+    if(root->left == NULL && root->right == NULL) {
+        if(height > max_height) {
+            max_height = height;
+            sum = root->val;
+        }
+        else if(height == max_height) {
+            sum += root->val;
+        }
+      }
+    
+    _deepestLeavesSum(root->right, height+1);
+    _deepestLeavesSum(root->left, height+1);
+      
+}
+int deepestLeavesSum(TreeNode* root) {
+    _deepestLeavesSum(root, 0);
+    return sum;
+}
+
+
+// OPTIMUM APPROACH WITH QUEUE
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+int deepestLeavesSum(TreeNode* root) {
+    if(!root)
+        return 0;
+    int max_sum {};
+    queue<TreeNode*> nodeQueue;
+    nodeQueue.push(root);
+    while(!nodeQueue.empty()) {
+        max_sum = 0;
+        int size = nodeQueue.size();
+        
+        for(int i = 0; i < size; i++) {
+            TreeNode* curr = nodeQueue.front();
+            nodeQueue.pop();
+            max_sum += curr->val;
+            
+            if(curr->left)
+                nodeQueue.push(curr->left);
+            if(curr->right)
+                nodeQueue.push(curr->right);
+        }
+    }
+    
+    return max_sum;
+}

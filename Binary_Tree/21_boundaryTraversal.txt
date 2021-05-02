@@ -1,0 +1,52 @@
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+void pushLeftBoundary(Node* root, vector<int>& boundaryVector) {
+  if(!root)
+    return;
+  if(root->left) {
+    boundaryVector.push_back(root->data);
+    pushLeftBoundary(root->left, boundaryVector);
+  }else if(root->right) {
+    boundaryVector.push_back(root->data);
+    pushLeftBoundary(root->right, boundaryVector);
+  }
+}
+
+void pushLeafNodes(Node* root, vector<int>& boundaryVector) {
+  if(!root)
+    return;
+    
+  pushLeafNodes(root->left, boundaryVector);
+
+  if(!root->left && !root->right)
+    boundaryVector.push_back(root->data);
+
+  pushLeafNodes(root->right, boundaryVector);
+
+}
+
+void pushRightBoundary(Node* root, vector<int>& boundaryVector) {
+  if(!root)
+    return;
+  if(root->right) {
+    pushRightBoundary(root->right, boundaryVector);
+    boundaryVector.push_back(root->data);
+  }else if(root->left) {
+    pushRightBoundary(root->left, boundaryVector);
+    boundaryVector.push_back(root->data);
+  }
+}
+
+vector <int> printBoundary(Node *root) {
+  vector<int> boundaryVector;
+  if(!root)
+    return boundaryVector;
+  boundaryVector.push_back(root->data);
+  pushLeftBoundary(root->left, boundaryVector);
+  pushLeafNodes(root, boundaryVector);
+  pushRightBoundary(root->right, boundaryVector);
+
+  return boundaryVector;
+}

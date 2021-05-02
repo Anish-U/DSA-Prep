@@ -1,0 +1,38 @@
+// DFS APPROACH
+// TC: O(N) => O(N)- visiting all nodes + O(NlogN)- sorting the Set
+// SC: O(N) => Storing Nodes
+
+void dfs(TreeNode* node, int row, int col, unordered_map<int, vector<pair<int, int>>>& nodeMap, int& minCol, int& maxCol){
+  if(!node) 
+    return;
+  if(nodeMap.count(col)) 
+    nodeMap[col].push_back({row, node->val});
+  else 
+    nodeMap.insert({col, {{row, node->val}}});
+
+  minCol = min(minCol, col);
+  maxCol = max(maxCol, col);
+  
+  dfs(node->left, row + 1, col - 1, nodeMap, minCol, maxCol);
+  dfs(node->right, row + 1, col + 1, nodeMap, minCol, maxCol);
+}
+vector<vector<int>> verticalTraversal(TreeNode* root) {
+  vector<vector<int>> result;
+  if(root == nullptr) return result;
+
+  unordered_map<int, vector<pair<int, int>>> nodeMap;
+  int minCol = 0, maxCol = 0;
+  
+  dfs(root, 0, 0, nodeMap, minCol, maxCol);
+
+  for(int c = minCol; c < maxCol + 1; ++c){
+    sort(nodeMap[c].begin(), nodeMap[c].end(), [](pair<int, int>& p1, pair<int, int>& p2){
+        return (p1.first < p2.first) || ((p1.first == p2.first) && (p1.second < p2.second));
+    });
+    vector<int> col;
+    for(pair<int, int>& p: nodeMap[c])
+        col.push_back(p.second);
+    result.push_back(col);
+  }
+  return result;
+}

@@ -1,0 +1,34 @@
+// ITERATIVE APPROACH
+// TC: O(N) => O(N)- Visiting all nodes
+// SC: O(N) 
+
+vector<int> zigZagTraversal(Node* root)
+{
+  vector<int> zigZagVector;
+  queue<Node *> nodeQueue;
+  nodeQueue.push(root);
+  int counter(1);
+  while (!nodeQueue.empty())
+  {
+    vector<int> levelVector;
+    int size = nodeQueue.size();
+    for(int i = 0; i < size; i++) {
+      Node *currNode = nodeQueue.front();
+      levelVector.push_back(currNode->data);
+      nodeQueue.pop();
+      
+      if (currNode->left)
+        nodeQueue.push(currNode->left);
+      if (currNode->right)
+        nodeQueue.push(currNode->right);
+    }
+    if(counter % 2 == 0){
+      reverse(levelVector.begin(), levelVector.end());
+    }
+    counter++;
+    for(auto num : levelVector) {
+      zigZagVector.push_back(num);
+    }
+  }
+  return zigZagVector;
+}

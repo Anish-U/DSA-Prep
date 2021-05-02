@@ -1,0 +1,60 @@
+// ITERATIVE APPROACH
+// TC: O(NlogN) => O(N- Visiting all nodes * O(logN)- inserting in MAP
+// SC: O(N) 
+
+vector<int> topView(Node *root)
+{
+  vector<int> topVector;
+  if(!root)
+    return topVector;
+  
+  map<int, int> nodeMap;
+  queue<pair<Node*, int>> nodeQueue;
+  
+  nodeQueue.push({root, 0});
+  while(!nodeQueue.empty()) {
+    Node* node = nodeQueue.front().first;
+    int dis = nodeQueue.front().second;
+    
+    nodeQueue.pop();
+    if(!nodeMap[dis])
+      nodeMap[dis] = node->data;
+    
+    if(node->left)
+      nodeQueue.push({node->left, dis - 1});
+    
+    if(node->right)
+      nodeQueue.push({node->right, dis + 1});
+  }
+  for(auto num: nodeMap) {
+    topVector.push_back(num.second);
+  }
+  return topVector;
+}
+
+
+// RECURSIVE APPROACH
+// TC: O(NlogN) => O(N- Visiting all nodes * O(logN)- inserting in MAP
+// SC: O(N) 
+
+map<int,pair<int, int>> nodeMap;
+void _topView(Node* root, int dis, int level) {
+  if(!root)
+    return;
+  if(nodeMap.count(dis) == 0 || nodeMap[dis].second > level)
+    nodeMap[dis] = {root->data, level};
+  _topView(root->left, dis - 1, level + 1);
+  _topView(root->right, dis + 1, level + 1);
+}
+
+vector<int> topView(Node *root)
+{
+  vector<int> topVector;
+  if(!root)
+    return topVector;
+  _topView(root, 0, 0);
+  for(auto num: nodeMap) {
+    topVector.push_back(num.second.first);
+  }
+  return topVector;
+}
