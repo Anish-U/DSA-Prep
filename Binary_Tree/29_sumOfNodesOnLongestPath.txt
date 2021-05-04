@@ -1,0 +1,27 @@
+// RECURSIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+void _sumOfLongRootToLeafPath(Node* root, int sum, int len, int &maxSum, int &maxLen) {
+  if(!root) {
+    if(len > maxLen) {
+      maxLen = len;
+      maxSum = sum;
+    }
+    else if(maxLen == len && maxSum < sum)
+      maxSum = sum;
+    return;
+  }
+  _sumOfLongRootToLeafPath(root->left, sum + root->data, len + 1, maxSum, maxLen);
+  _sumOfLongRootToLeafPath(root->right, sum + root->data, len + 1, maxSum, maxLen);
+}
+
+int sumOfLongRootToLeafPath(Node* root) {
+  if(!root)
+    return 0;
+  int maxSum = INT_MIN;
+  int maxLen = 0;    
+
+  _sumOfLongRootToLeafPath(root, 0, 0, maxSum, maxLen);
+  return maxSum;
+}

@@ -1,0 +1,40 @@
+// ITERATIVE APPROACH - BFS
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => 
+
+bool hasPathSum(TreeNode* root, int targetSum) {
+  if(!root)
+    return false;
+  queue<pair<TreeNode*, int>> nodeQueue;
+  nodeQueue.push({root,root->val});
+  while(!nodeQueue.empty()) {
+    TreeNode* currNode = nodeQueue.front().first;
+    int currSum = nodeQueue.front().second;
+    nodeQueue.pop();
+    if(currNode->left) {
+      nodeQueue.push({currNode->left, currSum + currNode->left->val});
+    }
+    if(currNode->right) {
+      nodeQueue.push({currNode->right, currSum + currNode->right->val});
+    }
+    if(!currNode->left && !currNode->right) {
+      if(currSum == targetSum)
+        return true;
+    }
+  }
+  
+  return false;
+}
+
+
+// RECURSIVE APPROACH - DFS
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+bool hasPathSum(TreeNode* root, int targetSum) {
+  if(!root)
+    return false;
+  if(root->val == targetSum && ( root->left == NULL && root->right == NULL ))
+    return true;
+  return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
+}

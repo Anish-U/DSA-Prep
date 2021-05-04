@@ -1,0 +1,67 @@
+// RECURSIVE APPROACH - DFS
+// TC: O(N) => Visiting all nodes
+// SC: O(NlogN) => O(N)- height of the recursive stack * O(NlogN)- traversing through map
+
+void _maxLevelSum(TreeNode* root, map<int, int> &levelSumMap, int level) {
+  if(!root)
+    return;
+  if(levelSumMap[level] == 0) {
+    levelSumMap[level] = root->val;
+  }
+  else {
+    levelSumMap[level] += root->val;
+  }
+  _maxLevelSum(root->left, levelSumMap, level + 1);
+  _maxLevelSum(root->right, levelSumMap, level + 1);
+}
+
+int maxLevelSum(TreeNode* root) {
+  if(!root)
+    return 0;
+  map<int, int> levelSumMap;
+  
+  _maxLevelSum(root, levelSumMap, 1);
+  
+  int maxSum = INT_MIN;
+  int maxLevel = 0;
+  for(auto it : levelSumMap) {
+    if(it.second > maxSum) {
+      maxSum = it.second;
+      maxLevel = it.first;
+    }
+    cout << it.first << "  " << it.second << endl;
+  }
+  return maxLevel;
+}
+
+
+// ITERATIVE APPROACH - BFS
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(N/2)- N/2 is the no of nodes in the last level of full tree
+
+int maxLevelSum(TreeNode* root) {
+  pair<int, int> maxSumLevel;
+  maxSumLevel = {INT_MIN, 0};
+  queue<TreeNode*> nodeQueue;
+  nodeQueue.push(root);
+  int counter{};
+  while(!nodeQueue.empty()) {
+    counter++;
+    int size = nodeQueue.size();
+    int sum = 0;
+    for(int i = 0; i < size; i++) {
+      TreeNode* curr = nodeQueue.front();
+      sum += curr->val;
+      nodeQueue.pop();
+      if(curr->left)
+        nodeQueue.push(curr->left);
+      if(curr->right)
+        nodeQueue.push(curr->right);
+    }
+    if(maxSumLevel.first < sum){
+      maxSumLevel.first = sum;
+      maxSumLevel.second = counter;
+    }
+  }
+  return maxSumLevel.second;
+}

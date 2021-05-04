@@ -1,0 +1,60 @@
+// RECURSIVE APPROACH - Reverse Postorder Traversal 
+// TC: O(N) => O(N)- Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+void _flatten(TreeNode* root, TreeNode* &prev) {
+  if(!root)
+    return;
+  
+  _flatten(root->right, prev);
+  _flatten(root->left, prev);
+
+  root->right = prev;
+  root->left = NULL;
+  prev = root;
+}
+
+void flatten(TreeNode* root) {
+  if(!root)
+    return;
+  
+  TreeNode* prev = NULL;
+  
+  _flatten(root, prev);
+  
+}
+
+
+// ITERATIVE APPROACH - DFS (PreOrder)
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+void flatten(TreeNode* root) {
+  if(!root)
+    return;
+  stack<TreeNode*> nodeStack;
+  
+  nodeStack.push(root);
+  
+  while(!nodeStack.empty()) {
+    TreeNode* curr = nodeStack.top();
+    nodeStack.pop();
+    
+    if(curr->right)
+      nodeStack.push(curr->right);
+
+    if(curr->left)
+      nodeStack.push(curr->left);
+    
+    if(!nodeStack.empty())
+      curr->right = nodeStack.top();
+    
+    curr->left = NULL;
+  }
+}
+
+
+// OPTIMUM APPROACH - Morris Traversal
+// TC: O(N) => Visiting all nodes
+// SC: O(1)
+

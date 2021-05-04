@@ -1,0 +1,21 @@
+// RECURSIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int _sum(Node* root) {
+  if(!root)
+    return 0;
+  return _sum(root->right) + _sum(root->left) + root->data;
+}
+
+bool isSumTree(Node* root) {
+  if(!root || !root->left && !root->right)
+    return true;
+
+  int leftSum = _sum(root->left);
+  int rightSum = _sum(root->right);
+
+  if((root->data == leftSum + rightSum) && isSumTree(root->left) && isSumTree(root->right))
+    return true;
+  return false; 
+}

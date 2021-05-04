@@ -1,0 +1,30 @@
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+int widthOfBinaryTree(TreeNode* root) {
+  if(!root)
+    return 0;
+  int maxWidth = INT_MIN;
+  queue <pair<TreeNode*, int>> nodeQueue;
+  nodeQueue.push({root, 0});
+  
+  while(!nodeQueue.empty()) {
+    int size = nodeQueue.size();
+    int start = nodeQueue.front().second;
+    int end = nodeQueue.back().second;
+    maxWidth = max(maxWidth, end - start + 1);
+    
+    for(int i = 0; i < size; i++) {
+      int idx = nodeQueue.front().second - start;
+      TreeNode* currNode = nodeQueue.front().first;
+      nodeQueue.pop();
+      if(currNode->left)
+        nodeQueue.push({currNode->left, 2*idx + 1});
+      
+      if(currNode->right)
+        nodeQueue.push({currNode->right, 2*idx + 2});
+    }
+}
+  return maxWidth;
+}

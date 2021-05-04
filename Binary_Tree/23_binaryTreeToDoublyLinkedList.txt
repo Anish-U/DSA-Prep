@@ -1,0 +1,31 @@
+// OPTIMUM APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+void _bToDLL(Node* root, Node* &prev, Node* &head) {
+  if(!root)
+    return;
+  _bToDLL(root->left, prev, head);
+  if(!prev) {
+    prev = root;
+    head = root;
+  }
+  else {
+    prev->right = root;
+    prev->right->left = prev;
+    prev = prev->right;
+  }
+  _bToDLL(root->right, prev, head);
+}
+
+Node * bToDLL(Node *root)
+{
+  if(!root)
+    return NULL;
+  Node* head = NULL;
+  Node* prev = NULL;
+
+  _bToDLL(root, prev, head);
+
+  return head;
+}

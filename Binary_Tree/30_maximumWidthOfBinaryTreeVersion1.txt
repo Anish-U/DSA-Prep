@@ -1,0 +1,63 @@
+// RECURSIVE APPROACH
+// TC: O(N^2) => O(N)- levels * O(height)- height => height & level ≈ no of nodes - Skewed Tree
+// SC: O(N) => O(height) => height ≈ no of nodes - Skewed Tree
+
+int _height(Node* root) {
+  if(!root)
+    return 0;
+  return max(_height(root->left), _height(root->right)) + 1;
+}
+
+int _getWidth(Node* root, int level) {
+  if(!root)
+    return 0;
+    
+  if(level == 1)
+    return 1;
+
+  else if(level > 1) {
+    return _getWidth(root->left, level - 1) + _getWidth(root->right, level - 1);
+  }
+}
+
+int getMaxWidth(Node* root) {
+  if(!root) 
+    return 0;
+  
+  int maxWidth = 0;
+  int width = 0;
+  int height = _height(root);
+
+  for(int i = 0; i < height; i++) {
+    width = _getWidth(root, i+1);
+    maxWidth = max(maxWidth, width);
+  }
+  return maxWidth;
+}
+
+
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) => O(width)
+
+int getMaxWidth(Node* root) {
+  int maxWidth = INT_MIN;
+  queue<Node*> nodeQueue;
+  nodeQueue.push(root);
+
+  while(!nodeQueue.empty()) {
+    int size = nodeQueue.size();
+    maxWidth = max(maxWidth, size);
+    for(int i = 0; i < size; i++) {
+      Node* currNode = nodeQueue.front();
+      nodeQueue.pop();
+
+      if(currNode->left)
+        nodeQueue.push(currNode->left);
+        
+      if(currNode->right)
+      nodeQueue.push(currNode->right);
+    }
+  }
+  return maxWidth;
+}

@@ -1,0 +1,80 @@
+// OPTIMUM APPROACH
+// TC: O(N) => O(N)- Visiting all nodes * O(1)- unordered_map access cost
+// SC: O(N) => Values of all nodes are stored in a unordered_map 
+
+int idx = 0;
+unordered_map<int,int> inOrderMap;
+Node* _buildTree(int in[],int pre[], int start, int end) {
+  if(start > end)
+    return NULL;
+  Node* newNode = new Node(pre[idx]);
+  idx++;
+  if(start == end)
+    return newNode;
+  int inOrderPos = inOrderMap[newNode->data];
+
+  newNode->left = _buildTree(in, pre, start, inOrderPos - 1);
+  newNode->right = _buildTree(in, pre, inOrderPos + 1, end);
+
+  return newNode;
+}
+
+Node* buildTree(int in[],int pre[], int n) {
+  inOrderMap.clear();
+  idx = 0;
+  for(int i = 0; i < n; i++)
+    inOrderMap[in[i]] = i;
+  return _buildTree(in, pre, 0, n-1);
+}
+
+
+
+// ITERATIVE APPROACH
+// TC: O(N) => Visiting all nodes
+// SC: O(N) 
+
+TreeNode* buildTree(vector<int> &preorder, vector<int> &inorder) {
+  // deal with edge case(s)
+  if (!preorder.size())
+    return NULL;
+
+  // build a map of the indices of the values as they appear in the inorder array
+  unordered_map<int, int> map;
+  for (int i = 0; i < inorder.size(); i++) {
+    map[inorder[i]] =  i;
+  }
+
+  // initialize the stack of tree nodes
+  stack<TreeNode*> nodeStack;
+  int value = preorder[0];
+  TreeNode* root = new TreeNode(value);
+  nodeStack.push(root);
+
+  // for all remaining values...
+  for (int i = 1; i < preorder.size(); i ++) {
+    // create a node
+    value = preorder[i];
+    TreeNode* node = new TreeNode(value);
+
+    if (map[value] < map[nodeStack.top()->val]) {
+      // the new node is on the left of the last node,
+      // so it must be its left child (that's the way preorder works)
+      nodeStack.top()->left = node;
+    }
+    else {
+      // the new node is on the right of the last node,
+      // so it must be the right child of either the last node
+      // or one of the last node's ancestors.
+      // pop the stack until we either run out of ancestors
+      // or the node at the top of the stack is to the right of the new node
+      TreeNode* parent = NULL;
+      while(!nodeStack.empty() && map[value] > map[nodeStack.top()->val]) {
+        parent = nodeStack.top();
+        nodeStack.pop();
+      }
+      parent->right = node;
+    }
+    nodeStack.push(node);
+  }
+  return root;
+}
