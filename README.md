@@ -49,3 +49,29 @@
 20. [Add One More Row to Binary Tree LC_623](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/20_addOneRowToTree_623.txt)
 
 21. [Coundary Traversal of a Binary Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/21_boundaryTraversal.txt)
+
+---
+
+###### 4<sup>th</sup> May 2021
+
+22. [Convert Tree to Sum Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/22_convertTreeToSumTree.txt)
+
+23. [Binary Tree to Doubly Linked List](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/23_binaryTreeToDoublyLinkedList.txt)
+
+24. [Consttruct Tree from Inorder & Preorder LC_105](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/24_constructTreeFromInorder%26Preorder_105.txt)
+
+25. [Maximum Level Sum of a Tree LC_1161](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/25_maximumLevelSumOfTree_1161.txt)
+
+26. [Check if leaf at same level](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/26_leafAtSameLevel.txt)
+
+27. [Flatten Binary Tree to Linked List LC_114](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/27_flattenBinaryTreeToLinkedList_114.txt)
+
+28. [Check if Tree is Sum Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/28_checkIfTreeIsSumTree.txt)
+
+29. [Sum of nodes on the Longest Path](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/29_sumOfNodesOnLongestPath.txt)
+
+30. [Maximum Width of Binary Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/30_maximumWidthOfBinaryTreeVersion1.txt)
+
+31. [Maximum Width of Binary Tree considering the NULL nodes LC_662](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/31_maximumWidthOfBinaryTreeVersion2.txt)
+
+32. [Path Sum LC_112](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/32_pathSum_112.txt)
