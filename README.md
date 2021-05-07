@@ -75,3 +75,41 @@
 31. [Maximum Width of Binary Tree considering the NULL nodes LC_662](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/31_maximumWidthOfBinaryTreeVersion2.txt)
 
 32. [Path Sum LC_112](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/32_pathSum_112.txt)
+
+---
+
+#### Stack & Queue
+
+###### 7<sup>th</sup> May 2021
+
+1. [Stack Implementaation](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/01_stackImplementation.txt)
+
+2. [Queue Implementation](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/02_queueImplementation.txt)
+
+3. [Implementation of two stacks in an array](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/03_implementTwoStackInArray.txt)
+
+4. [Stack with Middle element operarions](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/04_stackWithMiddleElementOperations.txt)
+
+5. [Valid Parenthesis Check LC_20](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/05_validParenthesisCheck_20.txt)
+
+6. [Reverse a String using Stack](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/06_reverseString.txt)
+
+7. [Min Stack Implementation LC_155](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/07_minStack_155.txt)
+
+8. [Next Greater Element I LC_496](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/08_nextGreaterElement_I_496.txt)
+
+9. [Next Greater Element II LC_503](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/09_nextGreaterElement_II_503.txt)
+
+10. [Celebrity Problem](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/10_celebrityProblem.txt)
+
+11. [Evaluate Postfix Expression LC_150](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/11_evaluatePostfixExpression_150.txt)
+
+12. [Insert at the end of Stack](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/12_insertAtEndOfStack.txt)
+
+13. [Reverse Stack using Recursion](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/13_reverseStack.txt)
+
+14. [Sort Stack](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/14_sortStack.txt)
+
+15. [Paranthesis Score LC_586](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/15_paranthesesScore_856.txt)
+
+---
