@@ -1,0 +1,29 @@
+// USING RECUSION
+
+stack<int> st;
+void insert_at_bottom(int x){
+  if(st.empty())
+    st.push(x);
+  else{
+    int a = st.top();
+    st.pop();
+    insert_at_bottom(x);
+    st.push(a);
+  }
+}
+int main() {
+  int n = 5;
+  for(int i = n; i > 0; i--)
+    st.push(i);
+  stack<int> copy(st);
+  while(!copy.empty()) {
+    cout << copy.top() << "  ";
+    copy.pop();    
+  }
+  cout<<endl<<endl;
+  insert_at_bottom(6);
+  while(!st.empty()) {
+    cout << st.top() << "  ";
+    st.pop();    
+  }
+}

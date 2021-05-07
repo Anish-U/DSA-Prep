@@ -1,0 +1,45 @@
+// OPTIMUM APROACH
+// TC: O(N)
+// SC: O(N)
+
+int evaluatePostfix(string S) {
+  stack<int> evalStack;
+  for(int i = 0; i < S.size(); i++) {
+    if(S[i] == '+') {
+      int b = evalStack.top();
+      evalStack.pop();
+      int a = evalStack.top();
+      evalStack.pop();
+
+      evalStack.push(a + b);
+    }
+    else if(S[i] == '-') {
+      int b = evalStack.top();
+      evalStack.pop();
+      int a = evalStack.top();
+      evalStack.pop();
+
+      evalStack.push(a - b);
+    }
+    else if(S[i] == '*') {
+      int b = evalStack.top();
+      evalStack.pop();
+      int a = evalStack.top();
+      evalStack.pop();
+
+      evalStack.push(a * b);
+    }
+    else if(S[i] == '/') {
+      int b = evalStack.top();
+      evalStack.pop();
+      int a = evalStack.top();
+      evalStack.pop();
+
+      evalStack.push(floor(a / b));
+    }
+    else {
+      evalStack.push(S[i] - '0');
+    }
+  }
+  return evalStack.top();  
+}

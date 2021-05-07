@@ -1,0 +1,117 @@
+// OPTIMUM APPROACH - N SPACE
+// TC: O(1)
+// SC: O(N)
+
+class MinStack {
+  private:
+    stack<int> realStack;
+    stack<int> minStack;
+
+  public:
+  void push(int val) {
+    if(realStack.empty()) {
+      minStack.push(val);
+      realStack.push(val);
+    }
+    else {
+      realStack.push(val);
+      if(val > minStack.top())
+        minStack.push(minStack.top());
+      else
+        minStack.push(val);
+    }
+  }
+
+  void pop() {
+    if(!realStack.empty()){
+      realStack.pop();
+      minStack.pop();
+    }
+  }
+
+  int top() {
+    return realStack.top();
+  }
+
+  int getMin() {
+    return minStack.top();
+  }
+};
+
+
+// OPTIMUM APPROACH - INTEGER OVERFFLOW
+// TC: O(1)
+// SC: O(1)
+
+class MinStack {
+  private:
+    stack<int> Stack;
+    int min = INT_MAX;
+  public:
+  void push(int val) {
+    if(Stack.empty()) {
+      Stack.push(val);
+      min = val;
+    }
+    else if(val >= min) {
+      Stack.push(val);
+    }
+    else {
+      Stack.push( 2*val - min );
+      min = val;
+    }
+  }
+
+  void pop() {
+    if(!Stack.empty()){
+      if(Stack.top() >= min)
+        Stack.pop();
+      else {
+        min = 2*min - Stack.top();
+        Stack.pop();
+      }
+    }
+  }
+
+  int top() {
+    if(Stack.top() >= min)
+      return Stack.top();
+    else
+      return min;
+  }
+
+  int getMin() {
+    return min;
+  }
+};
+
+// OPTIMUM APPROACH - USING PAIRS
+// TC: O(1)
+// SC: O(1)
+
+class MinStack {
+  private:
+    stack<pair<int, int>> Stack;
+  public:
+  void push(int val) {
+    if(Stack.empty()) {
+      Stack.push({val,val});
+    }
+    else {
+      Stack.push({val, min(Stack.top().second, val)});
+    }
+  }
+
+  void pop() {
+    if(!Stack.empty())
+      Stack.pop();
+  }
+
+  int top() {
+    return Stack.top().first;
+  }
+
+  int getMin() {
+    return Stack.top().second;
+  }
+};

@@ -1,0 +1,15 @@
+// OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(N)
+
+char* reverse(char *S, int len) {
+  stack<char> reverseStack;
+  for(int i = 0; i < len; i++) {
+    reverseStack.push(S[i]);
+  }
+  for(int i = 0; i < len; i++) {
+    S[i] = reverseStack.top();
+    reverseStack.pop();
+  }
+  return S;
+}

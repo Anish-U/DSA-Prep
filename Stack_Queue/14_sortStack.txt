@@ -1,0 +1,41 @@
+// OPTIMUM APPROACH - EXTRA STACK
+// TC: O(N^2)
+// SC: O(N)
+
+void SortedStack :: sort() {
+	stack<int> tmpStack;
+	while (!s.empty()) {
+		int tmp = s.top();
+		s.pop();
+		while (!tmpStack.empty() && tmpStack.top() > tmp) {
+			s.push(tmpStack.top());
+			tmpStack.pop();
+		}
+		tmpStack.push(tmp);
+	}
+	s = tmpStack;
+}
+
+
+// OPTIMUM APPROACH - RECURSION
+// TC: O(N^2);
+// SC: O(N);
+
+void sortedInsert(stack<int> &s, int x) {
+	if(s.empty() || x > s.top()) {
+		s.push(x);
+		return;
+	}
+	int temp = s.top();
+	s.pop();
+	sortedInsert(s, x);
+	s.push(temp);
+}
+void SortedStack :: sort() {
+	if(!s.empty()) {
+		int x = s.top();
+		s.pop();
+		sort();
+		sortedInsert(s, x);
+	}
+}

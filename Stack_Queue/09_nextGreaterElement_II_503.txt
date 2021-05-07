@@ -1,0 +1,31 @@
+// NAIVE APPROACH
+// TC: O(N^2)
+// SC: O(1)
+
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+  vector<long long> result(n, -1);
+  for(int i = 0; i < n; i++) {
+    for(int j = i + 1; j < n; j++) {
+      if(arr[i] < arr[j] && result[i] == -1) 
+        result[i] = arr[j];
+    }
+  }
+  return result;
+}
+
+// OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(N)
+
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+  vector<long long> result(n, -1);
+  stack<int> Stack;
+  for(int i = 0; i < n; i++) {
+    while(!Stack.empty() && arr[i] > arr[Stack.top()]) {
+      result[Stack.top()] = arr[i];
+      Stack.pop();
+    }
+    Stack.push(i);
+  }
+  return result;
+}

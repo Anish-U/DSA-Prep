@@ -1,0 +1,46 @@
+// OPTIMUM APPROACH
+// TC: O(N^2)
+// SC: O(N)
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+void printStack(stack<int> s) {
+    while(!s.empty()) {
+        cout << s.top();
+        s.pop();
+    }
+    cout << endl;
+}
+void insert_at_bottom(stack<int> &st, int x){
+    if(st.empty())
+        st.push(x);
+    else{
+        int a = st.top();
+        st.pop();
+        insert_at_bottom(st, x);
+        st.push(a);
+    }
+}
+
+int reverseStack(stack<int> &S) {
+    if(S.size()>0) {
+        int x = S.top();
+        S.pop();
+        reverseStack(S);
+        insert_at_bottom(S,x);
+    }
+}
+
+int main() {
+    stack<int> stk;
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++)
+        stk.push(i);
+    printStack(stk);
+    reverseStack(stk);
+    printStack(stk);
+	return 0;
+}

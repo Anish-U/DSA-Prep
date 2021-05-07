@@ -1,0 +1,39 @@
+// OPTIMUM APPROACH - STACK
+// TC: O(N)
+// SC: O(N)
+
+int scoreOfParentheses(string S) {
+  stack<int> stk;
+  stk.push(0);
+  for(int i = 0; i < S.size(); i++) {
+    if(S[i] == '(')
+      stk.push(0);
+    else {
+      int a = stk.top();
+      stk.pop();
+      int b = stk.top();
+      stk.pop();
+      int c = b + max(2 * a, 1);
+      stk.push(c);
+    }
+  }
+  return stk.top();
+}
+
+// OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(1)
+
+int scoreOfParentheses(string S) {
+  int top{}, ans{};
+  for(int i = 0; i < S.size(); i++) {
+    if(S[i] == '(') {
+      top++;
+      if(S[i+1] == ')') 
+        ans += pow(2,top-1);
+    } 
+    else 
+      top--;
+  }
+  return ans;
+}
