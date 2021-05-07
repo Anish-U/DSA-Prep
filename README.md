@@ -75,31 +75,3 @@
 31. [Maximum Width of Binary Tree considering the NULL nodes LC_662](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/31_maximumWidthOfBinaryTreeVersion2.txt)
 
 32. [Path Sum LC_112](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/32_pathSum_112.txt)
-
----
-
-#### Stack & Queue
-
-###### 7<sup>th</sup> May 2021
-
-1. [Implementation of Stack]()
-
-2. [Implementation of Queue]()
-
-3. [Implement 2 Stacks in an array]()
-
-4. [Design a Stack with Middle Element operations]()
-
-5. [Implement k Stacks in an array]()
-
-6. []()
-
-7. []()
-
-8. []()
-
-9. []()
-
-10. []()
-
----
