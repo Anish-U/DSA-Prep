@@ -113,3 +113,19 @@
 15. [Paranthesis Score LC_586](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/15_paranthesesScore_856.txt)
 
 ---
+
+###### 8<sup>th</sup> May 2021
+
+16. [Merge Overlapping Intervals LC_56](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/16_mergeOverlappingIntervals_56.txt)
+
+17. [Longest Valid Substring Paranthesis length](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/17_validSubstringLength.txt)
+
+18. [Check for redundant parenthesis in the string](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/18_checkRedundancyParenthesis.txt)
+
+19. [Implementation of Stack using Queue LC_255](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/19_stackUsingQueue_225.txt)
+
+20. [Implementation of Queue using Stack LC_232](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/20_queueUsingStack_232.txt)
+
+21. [Remove Outermost Parentheses LC_1021 ](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/21_removeOutermostParenthesis_1021.txt)
+
+---
