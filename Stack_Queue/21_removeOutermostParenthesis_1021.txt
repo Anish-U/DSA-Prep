@@ -1,0 +1,48 @@
+// STACK APPROACH
+// TC: O(N)
+// SC: O(N)
+
+class Solution {
+public:
+  string removeOuterParentheses(string S) {
+    stack<char>removeStack;
+    string str;
+    for(auto a:S) {
+      if(a=='(') {
+        if(removeStack.size()>0)
+          str+='(';
+        removeStack.push('(');
+      }
+      else {
+        if(removeStack.size()>1)
+          str+=')';
+        removeStack.pop();
+      }
+    }
+    return str;
+  }
+};
+
+
+// OPIMUM APPROACH
+// TC: O(N)
+// SC: O(1)
+
+class Solution {
+public:
+  string removeOuterParentheses(string S) {
+    int count = 0;
+    string str;
+    for(char c : S) {
+      if(c == '(') {
+        if(count++)
+          str += '(';
+      } 
+      else {
+        if(--count)
+          str += ')';
+      }
+    }
+    return str;
+  }
+};

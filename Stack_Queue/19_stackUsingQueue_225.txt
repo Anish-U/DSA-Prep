@@ -1,0 +1,100 @@
+// MAKING PUSH OPERATION COSTLY
+
+class MyStack {
+private:
+  queue<int> q1;  
+  queue<int> q2;
+  int N;
+public:
+  /** Initialize your data structure here. */
+  MyStack() {
+    N = 0;
+  }
+
+  /** Push element x onto stack. */
+  void push(int x) {
+    q2.push(x);
+    N++;
+    while(!q1.empty()) {
+      q2.push(q1.front());
+      q1.pop();
+    }
+    swap(q1, q2);
+  }
+
+  /** Removes the element on top of the stack and returns that element. */
+  int pop() {
+    if(q1.empty()) {
+      return -1;
+    }
+    N--;
+    int temp = q1.front();
+    q1.pop();
+    return temp;
+  }
+
+  /** Get the top element. */
+  int top() {
+    return q1.front();
+  }
+
+  /** Returns whether the stack is empty. */
+  bool empty() {
+    return N == 0;
+  }
+};
+
+
+// MAKING POP OPERATION COSTLY
+
+class MyStack {
+private:
+  queue<int> q1;  
+  queue<int> q2;
+  int N;
+public:
+  /** Initialize your data structure here. */
+  MyStack() {
+    N = 0;
+  }
+
+  /** Push element x onto stack. */
+  void push(int x) {
+    q1.push(x);
+    N++;
+  }
+
+  /** Removes the element on top of the stack and returns that element. */
+  int pop() {
+    if(q1.empty())
+      return -1;
+    while(q1.size() != 1) {
+      q2.push(q1.front());
+      q1.pop();
+    }
+    int temp = q1.front();
+    q1.pop();
+    N--;
+    swap(q1, q2);
+    return temp;
+  }
+
+  /** Get the top element. */
+  int top() {
+    if(q1.empty())
+      return -1;
+    while(q1.size() != 1) {
+      q2.push(q1.front());
+      q1.pop();
+    }
+    int temp = q1.front();
+    q2.push(temp);
+    swap(q1, q2);
+    return temp;
+  }
+
+  /** Returns whether the stack is empty. */
+  bool empty() {
+    return N == 0;
+  }
+};

@@ -1,0 +1,116 @@
+// NAIVE APPROACH - TRAVERSE
+// TC: O(N^2) + O(NlogN)
+// SC: O(1)
+
+class Solution {
+public:
+  vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    vector<vector<int>> result;
+
+    if(intervals.size() == 0)
+      return result;
+
+    sort(intervals.begin(), intervals.end());    
+    for(int i = 0; i < intervals.size(); i++) {
+      int tru = 0;
+
+      for(int j = i + 1; j < intervals.size(); j++) {
+
+        int a = intervals[i][0];
+        int b = intervals[i][1];
+
+        int c = intervals[j][0];
+        int d = intervals[j][1];
+
+        if( (a >= c && a <= d) || (b >= c && b <= d) || 
+            (c >= a && c <= b) || (d >= a && d <= b) ) {
+          
+          intervals.erase(intervals.begin()+i);
+          intervals.erase(intervals.begin()+j-1);
+          
+          intervals.push_back({min(a,c), max(b,d)});
+          i--;
+          
+          tru = 1;
+          break;
+        }                                            
+      }
+      
+      if(tru==0)
+      result.push_back({intervals[i][0], intervals[i][1]});
+    }
+    
+    return result;
+  }
+};
+
+
+
+// BETTER APPROACH - STACK
+// TC: O(N) + O(NlogN)
+// SC: O(N)
+
+class Solution {
+public:
+  vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    vector<vector<int>> mergedIntervals;
+    if(intervals.size() == 0)
+      return mergedIntervals;
+
+    sort(intervals.begin(), intervals.end());    
+    vector<int> tempInterval = intervals[0];
+    
+    stack<vector<int>> mergeStack;
+    
+    for(int i = 0; i < intervals.size(); i++) {
+      if(i == 0)
+        mergeStack.push(intervals[i]);
+      else {
+        vector<int> top = mergeStack.top();
+        if(intervals[i][0] > top[1])
+          mergeStack.push(intervals[i]);
+        else{
+          mergeStack.pop();
+          top[1] = max(top[1], intervals[i][1]);
+          mergeStack.push(top);
+        }
+      }
+    }
+    
+    while(!mergeStack.empty()) {
+      mergedIntervals.insert(mergedIntervals.begin(), mergeStack.top());
+      mergeStack.pop();
+    }
+    return mergedIntervals;
+  }
+};
+
+
+// OPTIMUM APPROACH - TEMPORARY PAIR / VECTOR
+// TC: O(N) + O(NlogN)
+// SC: O(1)
+
+class Solution {
+public:
+  vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    vector<vector<int>> mergedIntervals;
+    if(intervals.size() == 0)
+      return mergedIntervals;
+
+    sort(intervals.begin(), intervals.end());    
+    vector<int> tempInterval = intervals[0];
+    
+    for(auto it : intervals) {
+      if(it[0] <= tempInterval[1]) {
+        tempInterval[1] = max(it[1], tempInterval[1]);
+      }
+      else {
+        mergedIntervals.push_back(tempInterval);
+        tempInterval = it;
+      }
+    }
+    
+    mergedIntervals.push_back(tempInterval);
+    return mergedIntervals;
+  }
+};

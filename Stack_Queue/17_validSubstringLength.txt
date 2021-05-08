@@ -1,0 +1,27 @@
+// OPTIMUM APPROACH 
+// TC: O(N)
+// SC: O(N)
+
+int findMaxLen(string s) {
+  stack<int> checkStack;
+  checkStack.push(-1);
+
+  int length = 0;
+
+  for (int i = 0; i < s.size(); i++) {
+    if (s[i] == '(')
+    checkStack.push(i);
+
+    else {
+      if (!checkStack.empty())
+        checkStack.pop();
+
+      if (!checkStack.empty())
+        length = max(length, i - checkStack.top());
+
+      else
+        checkStack.push(i);
+    }
+  }
+  return length;
+}

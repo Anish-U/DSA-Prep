@@ -1,0 +1,105 @@
+// MAKING ENQUEUE OPERATION COSTLY
+
+class MyQueue {
+private:
+  stack<int> s1;
+  stack<int> s2;
+  int N;
+public:
+  /** Initialize your data structure here. */
+  MyQueue() {
+    N = 0;
+  }
+
+  /** Push element x to the back of queue. */
+  void push(int x) {
+    while (!s1.empty()) {
+      s2.push(s1.top());
+      s1.pop();
+    }
+    N++;
+    s1.push(x);
+    while (!s2.empty()) {
+      s1.push(s2.top());
+      s2.pop();
+    }
+  }
+
+  /** Removes the element from in front of queue and returns that element. */
+  int pop() {
+    if (s1.empty())
+      return -1;
+    N--;
+    int temp = s1.top();
+    s1.pop();
+    return temp;
+  }
+
+  /** Get the front element. */
+  int peek() {
+    if (s1.empty())
+      return -1;
+    
+    return s1.top();
+  }
+
+  /** Returns whether the queue is empty. */
+  bool empty() {
+    return N == 0;
+  }
+};
+
+
+// MAKING DEQUEUE OPERATION COSTLY
+
+class MyQueue {
+private:
+  stack<int> s1;
+  stack<int> s2;
+  int N;
+public:
+  /** Initialize your data structure here. */
+  MyQueue() {
+    N = 0;
+  }
+
+  /** Push element x to the back of queue. */
+  void push(int x) {
+    s1.push(x);
+    N++;
+  }
+
+  /** Removes the element from in front of queue and returns that element. */
+  int pop() {
+    if(s1.empty() && s2.empty())
+      return -1;
+    if(s2.empty()) {
+      while(!s1.empty()) {
+        s2.push(s1.top());
+        s1.pop();
+      }
+    }
+    int temp = s2.top();
+    s2.pop();
+    N--;
+    return temp;
+  }
+
+  /** Get the front element. */
+  int peek() {
+    if(s1.empty() && s2.empty())
+      return -1;
+    if(s2.empty()) {
+      while(!s1.empty()) {
+        s2.push(s1.top());
+        s1.pop();
+      }
+    }
+    return s2.top();
+  }
+
+  /** Returns whether the queue is empty. */
+  bool empty() {
+    return N == 0;
+  }
+};

@@ -1,0 +1,26 @@
+// OPTIMUM APPROACH 
+// TC: O(N)
+// SC: O(N)
+
+bool checkRedundancy(string& str) {
+  stack<char> st;
+  for (auto& ch : str) {
+    if (ch == ')') {
+      char top = st.top();
+      st.pop();
+      bool flag = true;
+      while (!st.empty() and top != '(') {
+        if (top == '+' || top == '-' ||
+        top == '*' || top == '/')
+        flag = false;
+        top = st.top();
+        st.pop();
+      }
+      if (flag == true)
+        return true;
+    }
+    else
+      st.push(ch); // push open parenthesis '(',
+  }
+  return false;
+}
