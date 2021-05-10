@@ -1,0 +1,33 @@
+// USING STACK
+// TC: O(N)
+// SC: O(N)
+
+queue<int> rev(queue<int> q) {
+  stack<int> tempStack;
+  while (!q.empty()) {
+    tempStack.push(q.front());
+    q.pop();
+  }
+  while (!tempStack.empty()) {
+    q.push(tempStack.top());
+    tempStack.pop();
+  }
+  return q;
+}
+
+// USING RECURSION
+// TC: O(N)
+// SC: O(N)
+
+queue<int> rev(queue<int> q) {
+  if (q.empty())
+    return q;
+
+  int data = q.front();
+  
+  q.pop();
+  q = rev(q);
+  q.push(data);
+
+  return q;
+}

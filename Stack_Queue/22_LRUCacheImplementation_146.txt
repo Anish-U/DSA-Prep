@@ -1,0 +1,127 @@
+// USING List STL
+
+class LRUCache {
+private:
+  int maxSize;
+  list<int> keyList;
+  unordered_map<int, pair<int, list<int>::iterator>> listMap;
+
+public:
+  LRUCache(int capacity) {
+    maxSize = capacity;
+  }
+
+  int get(int key) {
+    if(listMap.find(key) != listMap.end()) {
+      keyList.erase(listMap[key].second);
+      keyList.push_front(key);
+      listMap[key].second = keyList.begin();
+      return listMap[key].first;
+    }
+    return -1;
+  }
+
+  void put(int key, int value) {
+    if(listMap.find(key) != listMap.end()) {
+       keyList.erase(listMap[key].second);
+      keyList.push_front(key);
+      listMap[key].first = value;
+      listMap[key].second = keyList.begin();
+    }
+    else {
+      if(keyList.size() == maxSize) {
+        listMap.erase(keyList.back());
+        keyList.pop_back();
+      }
+      keyList.push_front(key);
+      listMap[key].first = value;
+      listMap[key].second = keyList.begin();
+    }
+  }
+};
+
+// USING DOUBLY LINKED LIST
+
+class LRUCache {
+public:
+  class Node {
+  public:
+    int key;
+    int val;
+    Node* next;
+    Node* prev;
+  };
+    
+  Node* head = new Node();
+  Node* tail = new Node();
+
+  int cap;
+  unordered_map<int, Node*>listMap;
+
+  LRUCache(int capacity) {
+    cap = capacity;    
+    head->next = tail;
+    tail->prev = head;
+  }
+
+  void addNode(Node* newNode) {
+    Node* temp = head->next;
+    newNode->next = temp;
+    newNode->prev = head;
+    head->next = newNode;
+    temp->prev = newNode;
+  }
+    
+  void deleteNode(Node* delNode) {
+    Node* delPrev = delNode->prev;
+    Node* delNext = delNode->next;
+    delPrev->next = delNext;
+    delNext->prev = delPrev;
+  }
+    
+  int get(int key) {
+    int res = -1;
+    if (listMap.find(key) != listMap.end()) {
+      Node* resNode = listMap[key];
+      res = resNode->val;
+      deleteNode(resNode);
+      listMap.erase(key);
+      addNode(resNode);
+      listMap[key] = head->next;
+    }
+    return res;
+  }
+    
+  void put(int key, int value) {
+    if (listMap.find(key) != listMap.end()) {
+      Node* existingNode = listMap[key];
+      if (existingNode->val != value) {
+        existingNode->val = value;
+      }
+      deleteNode(existingNode);
+      addNode(existingNode);
+      listMap.erase(key);
+      listMap[key] = head->next;
+    }
+    else {
+      if (listMap.size() == cap) {
+        Node* delNode = tail->prev;
+        int delKey = delNode->key;
+        deleteNode(delNode);
+        Node* newNode = new Node();
+        newNode->key = key;
+        newNode->val = value;
+        addNode(newNode);
+        listMap.erase(delKey);
+        listMap[key] = newNode;
+      }
+      else if (listMap.size() < cap) {
+        Node* newNode = new Node();
+        newNode->key = key;
+        newNode->val = value;
+        addNode(newNode);
+        listMap[key] = newNode;
+      }
+    }
+  }
+};

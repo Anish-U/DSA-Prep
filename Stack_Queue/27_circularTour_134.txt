@@ -1,0 +1,94 @@
+// NAIVE APPROACH - CHECK ALL POSSIBLE STARTS
+// TC: O(N^2)
+// SC: O(N)
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+
+  int n = gas.size();
+  queue<int> pq; // store indices of possible answers
+
+  for(int i = 0; i<n; i++) {
+    int temp = gas[i] - cost[i];
+    if(temp >= 0) pq.push(i); // can be a possible start point
+  }
+
+  while(!pq.empty()) {
+
+    int curr = pq.front();
+    pq.pop();
+    bool flag = false;
+    int i = curr;
+    int counter = 0; // checking if cycle complete
+    int fuel = 0;
+    while(1) {
+      if(counter == n) { // if reached full circle
+        flag = true;
+        break;
+      }
+      fuel += gas[i] - cost[i];
+      if(fuel < 0) break; // can't go further
+      i = (i+1) % n;
+      counter++;
+    }
+    if(flag) 
+      return curr; // only 1 answer exists
+  }
+  return -1;
+}
+
+// BETTER APPROACH - QUEUE 
+// TC: O(N)
+// SC: O(N)
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+  int n=gas.size();
+  if(n == 1) {
+    if(gas[0] - cost[0] >= 0) 
+      return 0;
+    else 
+      return -1;
+  }
+
+  int front = 0, rear = 1, tank = gas[0] - cost[0];
+
+  while(front != rear || tank < 0) {
+    if(tank<0) {
+      while(tank < 0 && front != rear) {
+        tank -= (gas[front] - cost[front]);
+        front = (front + 1) % n;
+
+        if(front == 0) 
+          return -1;
+      }
+    }
+    tank+=gas[rear]-cost[rear];
+    rear=(rear+1)%n;
+  }
+  return front;
+}
+
+OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(1)
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+  int n=gas.size();
+  int totalSurplus = 0;
+  int surplus = 0;
+  int start = 0;
+  
+  for(int i = 0; i < n; i++) {
+    totalSurplus += (gas[i] - cost[i]);
+    surplus += gas[i] - cost[i];
+    if(surplus < 0) {
+      surplus = 0;
+      start = i + 1;
+    }
+  }
+  
+  if(totalSurplus < 0) {
+    return -1;
+  }
+  
+  return start;
+  }

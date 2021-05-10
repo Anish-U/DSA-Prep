@@ -1,0 +1,118 @@
+// USING ARRAY
+
+class MyCircularQueue {
+
+private:
+  vector<int> circularQueue;
+  int front, rear, maxSize;
+
+public:
+  
+  MyCircularQueue(int k) {
+    circularQueue.resize(k);
+    maxSize = k;
+    front = 0;
+    rear = -1;
+  }
+  
+  bool enQueue(int val) {
+    if (isFull()) 
+      return false;
+    rear = (rear + 1) % maxSize;
+    circularQueue[rear] = val;
+    return true;
+  }
+  
+  bool deQueue() {
+    if (isEmpty()) 
+      return false;
+    if (front == rear) 
+      front = 0, rear = -1;
+    else 
+      front = (front + 1) % maxSize;
+    return true;
+  }
+  
+  int Front() {
+    return isEmpty() ? -1 : circularQueue[front];
+  }
+  
+  int Rear() {
+    return isEmpty() ? -1 : circularQueue[rear];
+  }
+  
+  bool isEmpty() {
+    return rear == -1;
+  }
+  
+  bool isFull() {
+    return !isEmpty() && (rear + 1) % maxSize == front;
+  }
+};
+
+
+// USING LINKED LIST
+
+struct Node {
+public:
+  int val;
+  Node* next;
+  
+  Node(int v, Node* n = NULL) {
+    val = v;
+    next = n;
+  }
+};
+
+class MyCircularQueue {
+
+private:
+  int maxSize, size = 0;
+  Node *front = new Node(0), *rear = new Node(0);
+
+public:
+  
+  MyCircularQueue(int k) {
+    maxSize = k;
+  }
+  
+  bool enQueue(int val) {
+    if (isFull()) 
+      return false;
+    Node* newNode = new Node(val);
+    if (isEmpty()) 
+      front = newNode, rear = newNode;
+    else {
+      rear->next = newNode; 
+      rear = rear->next;
+    } 
+    size++;
+    return true;
+  }
+  
+  bool deQueue() {
+    if (isEmpty()) 
+      return false;
+    Node* rem = front;
+    front = front->next;
+    delete(rem);
+    size--;
+    return true;
+  }
+  
+  int Front() {
+    return isEmpty() ? -1 : front->val;
+  }
+  
+  int Rear() {
+    return isEmpty() ? -1 : rear->val;
+  }
+  
+  bool isEmpty() {
+    return size == 0;
+  }
+  
+  bool isFull() {
+    return size == maxSize;
+  }
+};

@@ -1,0 +1,47 @@
+// NAIVE APPROACH - USING STACK & QUEUE
+// TC: O(N) => O(N)- Storing + O(N)- Retrieving
+// SC: O(N) => O(k)- Stack + O(N-k)- Queue
+
+queue<int> modifyQueue(queue<int> q, int k) {
+  stack<int> tempStack;
+  queue<int> tempQueue;
+  for(int i = 0; i < k; i++) {
+    tempStack.push(q.front());
+    q.pop();
+  }
+  while(!q.empty()) {
+    tempQueue.push(q.front());
+    q.pop();
+  }
+  while (!tempStack.empty()) {
+    q.push(tempStack.top());
+    tempStack.pop();
+  }
+  while(!tempQueue.empty()) {
+    q.push(tempQueue.front());
+    tempQueue.pop();
+  }
+  return q;
+}
+
+// OPTIMUM APPROACH - USING STACK ONLY
+// TC: O(N + k) => O(k)- Storing + O(k)- Retrieving + O(N-k)- Queue Enqueue & Dequeue 
+// SC: O(k)
+
+queue<int> modifyQueue(queue<int> q, int k) {
+  stack<int> tempStack;
+  int size = q.size();
+  for(int i = 0; i < k; i++) {
+    tempStack.push(q.front());
+    q.pop();
+  }
+  while (!tempStack.empty()) {
+    q.push(tempStack.top());
+    tempStack.pop();
+  }
+  for(int i = 0; i < size - k; i++) {
+    q.push(q.front());
+    q.pop();
+  }
+  return q;
+}

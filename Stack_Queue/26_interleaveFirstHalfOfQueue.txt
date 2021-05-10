@@ -1,0 +1,69 @@
+// NAIVE APPROACH - TWO QUEUES
+// TC: O(N)
+// SC: O(N)
+
+void interLeaveQueue(queue<int>& q) {
+  
+	queue<int> q1;
+  queue<int> q2;
+	int halfSize = q.size() / 2;
+
+  for (int i = 0; i < halfSize; i++) {
+		q1.push(q.front());
+		q.pop();
+	}
+  for (int i = 0; i < halfSize; i++) {
+		q2.push(q.front());
+		q.pop();
+	}
+  
+  int counter = 1;
+  while(!q1.empty() && !q2.empty()) {
+    if(counter % 2 == 0) {
+      q.push(q2.front());
+      q2.pop();
+    }
+    else {
+      q.push(q1.front());
+      q1.pop();
+    }
+    counter++;
+  }
+}
+
+// OPTIMUM APPROACH - STACK
+// TC: O(N)
+// SC: O(N)
+
+void interLeaveQueue(queue<int>& q) {
+
+  stack<int> s;
+  int halfSize = q.size() / 2;
+
+  for (int i = 0; i < halfSize; i++) {
+    s.push(q.front());
+    q.pop();
+  }
+
+  while (!s.empty()) {
+    q.push(s.top());
+    s.pop();
+  }
+
+  for (int i = 0; i < halfSize; i++) {
+    q.push(q.front());
+    q.pop();
+  }
+
+  for (int i = 0; i < halfSize; i++) {
+    s.push(q.front());
+    q.pop();
+  }
+
+  while (!s.empty()) {
+    q.push(s.top());
+    s.pop();
+    q.push(q.front());
+    q.pop();
+  }
+}
