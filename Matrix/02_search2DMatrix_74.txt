@@ -1,0 +1,89 @@
+// NAIVE APPROACH
+// TC: O(N * M)
+// SC: O(1)
+
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+  for(int i = 0; i < matrix.size(); i++) {
+    for(int j = 0; j < matrix[0].size(); j++) {
+      if(target == matrix[i][j]) {
+        return true;
+        break;
+      }
+    }
+  }
+  return false;
+}
+
+
+// BETTER APPROACH
+// TC: O(N * log(M))
+// SC: O(1)
+
+bool searchMatrix(vector<vector<int>>& matrix, int target) {  
+  for(int i = 0; i < matrix.size(); i++) {
+    int low = 0;
+    int high = matrix[0].size() - 1;
+    while(low <= high) {
+      int mid = (low + (high - low) / 2);
+      if(matrix[i][mid] == target) {
+        return true;
+      }
+      else if(matrix[i][mid] > target) {
+        high = mid - 1;
+      }
+      else {
+        low = mid + 1;
+      }
+    }
+  }
+  return false;
+}
+
+// BETTER APPROACH - OPTIMUM FOR LC_240
+// TC: O(N + M)
+// SC: O(1)
+
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+  int row = 0;
+  int col = matrix[0].size() - 1;
+  
+  while(row < matrix.size() && col >= 0) {
+    if(matrix[row][col] == target) {
+      return true;
+    }
+    else if(matrix[row][col] > target) {
+      col--;
+    }
+    else {
+      row++;
+    }
+  }
+  return false;
+}
+
+
+// OPTIMUM APPROACH
+// TC: O(log(N * M))
+// SC: O(1)
+
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+  int n = matrix.size();
+  int m = matrix[0].size();
+  
+  int low = 0;
+  int high = m * n - 1;
+  
+  while(low <= high) {
+    int mid = (low + (high - low) / 2);
+    if(matrix[mid / m][mid % m] == target) {
+      return true;
+    }
+    else if(matrix[mid / m][mid % m] > target) {
+      high = mid - 1;
+    }
+    else {
+      low = mid + 1;
+    }
+  }
+  return false;
+}

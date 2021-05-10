@@ -1,0 +1,87 @@
+// OPTIMUM APPROACH - DIRECTION
+// TC: O(N * M)
+// SC: O(1)
+
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+  int left = 0;
+  int right = matrix[0].size() - 1;
+  int top = 0;
+  int bottom = matrix.size() - 1;
+  
+  int dir = 1;
+  
+  vector<int> spiralMatrix;
+  
+  while(left <= right && top <= bottom) {
+    if(dir == 1) {
+      for(int i = left; i <= right; i++) {
+        // cout << matrix[top][i] << "  ";
+        spiralMatrix.push_back(matrix[top][i]);
+      }
+      top++;
+      dir = 2;
+    }
+    else if (dir == 2) {
+      for(int i = top; i <= bottom; i++) {
+        // cout << matrix[i][right] << "  ";
+        spiralMatrix.push_back(matrix[i][right]);
+      }
+      right--;
+      dir = 3;
+    }
+    else if(dir == 3) {
+      for(int i = right; i >= left; i--) {
+        // cout << matrix[bottom][i] << "  ";
+        spiralMatrix.push_back(matrix[bottom][i]);
+      }
+      bottom--;
+      dir = 4;
+    }
+    else if(dir == 4) {
+      for(int i = bottom; i >= top; i--) {
+        // cout << matrix[i][left] << "  ";
+        spiralMatrix.push_back(matrix[i][left]);
+      }
+      left++;
+      dir =1;
+    }
+  }
+  return spiralMatrix;
+}
+
+// OPTIMUM APPROACH - DIRECTIONLESS
+// TC: O(N * M)
+// SC: O(1)
+
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+  int colBegin = 0;
+  int colEnd = matrix[0].size() - 1;
+  int rowBegin = 0;
+  int rowEnd = matrix.size() - 1;
+  
+  vector<int> spiralMatrix;
+  
+  while(colBegin <= colEnd && rowBegin <= rowEnd) {
+    for(int i = colBegin; i <= colEnd; i++) {
+      spiralMatrix.push_back(matrix[rowBegin][i]);
+    }
+    rowBegin++;
+    for(int i = rowBegin; i <= rowEnd; i++) {
+      spiralMatrix.push_back(matrix[i][colEnd]);
+    }
+    colEnd--;
+    if(rowBegin <= rowEnd) {
+      for(int i = colEnd; i >= colBegin; i--) {
+        spiralMatrix.push_back(matrix[rowEnd][i]);
+      }
+      rowEnd--; 
+    }
+    if(colBegin <= colEnd) {
+      for(int i = rowEnd; i >= rowBegin; i--) {
+        spiralMatrix.push_back(matrix[i][colBegin]);
+      }
+      colBegin++;
+    }
+  }
+  return spiralMatrix;
+}
