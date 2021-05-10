@@ -129,3 +129,33 @@
 21. [Remove Outermost Parentheses LC_1021 ](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/21_removeOutermostParenthesis_1021.txt)
 
 ---
+
+###### 10<sup>th</sup> May 2021
+
+22. [LRU Cache Implementation LC_146](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/22_LRUCacheImplementation_146.txt)
+
+23. [Circular Queue Implementation LC_622](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/23_circularQueueImplementation_622.txt)
+
+24. [Reverse a Queue](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/24_reverseQueue.txt)
+
+25. [Reverse first K elements of Queue](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/25_reverseFirstKElementsOfQueue.txt)
+
+26. [Interleave first half of Queue](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/26_interleaveFirstHalfOfQueue.txt)
+
+27. [Circular Tour / Gas Station LC_134](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/27_circularTour_134.txt)
+
+---
+
+#### Matrix
+
+###### 10<sup>th</sup> May 2021
+
+1. [Spiral Representation of a Matrix LC_54](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/01_spiralMatrixRepresentation_54.txt)
+
+2. [Search an element in 2D Matrix LC_74](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/02_search2DMatrix_74.txt)
+
+3. [Median in Row-wise Sorted Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/03_medianInRowWiseSortedMatrix.txt)
+
+4. [Row with maximum no of 1's](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/04_rowWithMaximumNoOf1s.txt)
+
+---
