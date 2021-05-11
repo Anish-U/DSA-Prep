@@ -159,3 +159,23 @@
 4. [Row with maximum no of 1's](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/04_rowWithMaximumNoOf1s.txt)
 
 ---
+
+5. [Sort a 2D Matrix that is Row Sorted](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/05_sort2DMatrix.txt)
+
+6. [kth Smallest Element in a Matrix LC_378](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/06_kthElementInMatrix_378.txt)
+
+7. [Find Specific Pair in a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/07_findSpecificPairInMatrix.txt)
+
+8. [Rotate Matrix by 90°](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/08_rotateMatrix90deg_48.txt)
+
+9. [Matrix Multiplication](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/09_matrixMultiplication.txt)
+
+10. [Wave Traversal Of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/10_waveTraversalOfMAtrix.txt)
+
+11. [Diagonal Traversal of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/11_diagonalTraversal.txt)
+
+12. [Diagonal Traversal of a Matrix Alternatively LC_498](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/12_diagonalZigZagTraversal_498.txt)
+
+13. [Saddle Point of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/13_saddlePointOfMatrix.txt)
+
+14. [Shell Rotate of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/14_shellRotateMatrix.txt)
