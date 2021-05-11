@@ -1,0 +1,94 @@
+// OPTIMUM APPROACH
+/* Algorithm
+  
+  => Shell to 1D Array
+  => Rotate 1D Array
+  => 1D Array to Shell
+
+*/
+
+void shellRotate(vector<vector<int>> arr, int s, int r) {
+  vector<int> oneD = fillOneD(arr, s);
+  rotate(oneD, r);
+  fillShell(arr, s, oneD); 
+}
+
+// Function to Rotate an Array
+void rotate(vector<int> arr, int r) {
+  r %= arr.size();
+  if(r < 0) {
+    r = arr.size() + r;
+  }
+
+  reverse(arr, 0, arr.size() - r - 1);
+  reverse(arr, arr.size() - r, arr.size());
+  reverse(arr, 0, arr.size());
+}
+
+// Function to Reverse an Array
+void reverse(vector<int> arr, int li, int ri) {
+  while(li < ri) {
+    swap(arr[li++], arr[ri--]);
+  }
+}
+
+// Function to fill 1D Array from Shell
+vector<int> fillOneD(vector<vector<int>> arr, int s) {
+  int minR = s - 1;
+  int minC = s - 1;
+  int maxR = arr.size() - s;
+  int maxC = arr[0].size() - s;
+  int size = 2 * (maxR - minR + maxC - minC);
+
+  vector<int> oneD;
+  // lw
+  for(int i = minR, j = minC; i <= maxR; i++) {
+    oneD.push_back(arr[i][j]);
+  }
+
+  // bw
+  for(int i = maxR, j = minC + 1; j <= maxC; j++) {
+    oneD.push_back(arr[i][j]);
+  }
+
+  // rw
+  for(int i = maxR - 1, j = maxC; i >= minR; i--) {
+    oneD.push_back(arr[i][j]);
+  }
+
+  // tw
+  for(int i = minR, j = maxC - 1; j >= minC + 1; j--) {
+    oneD.push_back(arr[i][j]);
+  }
+
+  return oneD;
+}
+
+// Function to fill Shell from 1D Array
+void fillShell(vector<vector<int>> arr, int s, vector<int> oneD) {
+  int minR = s - 1;
+  int minC = s - 1;
+  int maxR = arr.size() - s;
+  int maxC = arr[0].size() - s;
+
+  // lw
+  int index = 0;
+  for(int i = minR, j = minC; i <= maxR; i++) {
+    arr[i][j] = oneD[index++]
+  }
+
+  // bw
+  for(int i = maxR, j = minC + 1; j <= maxC; j++) {
+    arr[i][j] = oneD[index++]
+  }
+
+  // rw
+  for(int i = maxR - 1, j = maxC; i >= minR; i--) {
+    arr[i][j] = oneD[index++]
+  }
+
+  // tw
+  for(int i = minR, j = maxC - 1; j >= minC + 1; j--) {
+    arr[i][j] = oneD[index++]
+  }
+}

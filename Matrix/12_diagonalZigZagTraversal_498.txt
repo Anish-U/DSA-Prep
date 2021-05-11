@@ -1,0 +1,92 @@
+// NAIVE APPROACH
+// TC: O(N)- No of elements in matrix
+// SC: O(min(m, n))- Length of the longest diagonal
+
+vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+  if(mat.size() == 0 || mat[0].size() == 0)
+    return {};
+  
+  int m = mat.size();
+  int n = mat[0].size();
+  
+  vector<int> diag;
+  bool up = true;
+  
+  queue<pair<int, int>> diagQueue;
+  diagQueue.push({0, 0});
+  
+  while(!diagQueue.empty()) {
+    int size = diagQueue.size();
+    vector<int> layer;
+
+    for(int i = 0; i < size; i++) {
+      int r = diagQueue.front().first;
+      int c = diagQueue.front().second;
+      diagQueue.pop();
+      
+      layer.push_back(mat[r][c]);
+      
+      if(c == 0 && r + 1 < m)
+        diagQueue.push({r + 1, c});
+      if(c + 1 < n)
+        diagQueue.push({r, c + 1});
+    }
+
+    if(up) {
+      for(int i = 0; i < layer.size(); i++) {
+        diag.push_back(layer[i]);
+      }
+    }
+    else {
+      for(int i = layer.size() - 1; i >= 0; i--) {
+        diag.push_back(layer[i]);
+      }
+    }
+    up = !up;
+  }  
+  return diag;
+}
+
+// OPTIMUM APPROACH
+// TC: O(N)- No of elements in matrix
+// SC: O(1)
+
+vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+  if(mat.size() == 0 || mat[0].size() == 0)
+    return {};
+  int m = mat.size();
+  int n = mat[0].size();
+  vector<int> diag;
+  
+  int row{}, col{};
+  bool up = true;
+  
+  while(row < m && col < n) {
+    if(up) {
+      while(row > 0 && col < n-1) {
+        diag.push_back(mat[row][col]);
+        row--;
+        col++;
+      }
+      diag.push_back(mat[row][col]);
+      if(col == n - 1)
+        row++;
+      else
+        col++;
+    }
+    else {
+      while(col > 0 && row < m-1) {
+        diag.push_back(mat[row][col]);
+        row++;
+        col--;
+      }
+      diag.push_back(mat[row][col]);
+      if(row == m - 1)
+        col++;
+      else
+        row++;
+    }
+    up = !up;
+  }
+  return diag;
+}

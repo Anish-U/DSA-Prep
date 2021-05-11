@@ -1,0 +1,34 @@
+// OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(1)
+
+void waveTraversal(vector<vector<int>> mat) {
+  for(int j = 0; j < mat[0].size(); j++) {
+    if(j % 2 == 0) {
+      for(int i = 0; i < mat.size(); i++)
+        cout << mat[i][j] << " ";
+    }
+    else {
+      for(int i = mat.size(); i > 0; i--) 
+        cout << mat[i][j] << " ";
+    }
+  }
+}
+
+// FOR REVERSE WAVE TRAVERSAL
+// TC: O(N)
+// SC: O(1)
+
+void revWaveTraversal(vector<vector<int>> mat) {
+  int dir = 1;
+  for(int j = mat[0].size(); j > 0; j--) {
+    if(dir) {
+      for(int i = 0; i < mat.size(); i++)
+        cout << mat[i][j] << " ";
+    }
+    else {
+      for(int i = mat.size(); i > 0; i--)
+        cout << mat[i][j] << " ";
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// OPTIMUM APPROACH
+// TC: O(N)
+// SC: O(1)
+
+int saddlePoint(vector<vector<int>> mat) {
+  for(int i = 0; i < mat.size(); i++) {
+    int svj = 0;
+    for(int j = 0; i < mat[0].size(); j++) {
+      if(mat[i][j] < mat[i][svj]) {
+        svj = j;
+      }
+    }
+    bool flag = true;
+    for(int k = 0; k < mat.size(); k++) {
+      if(mat[k][svj] > mat[i][svj]) {
+        flag = false;
+        break;
+      }
+    }
+    if(flag)
+      return mat[i][svj];
+  }
+  return -1;
+}

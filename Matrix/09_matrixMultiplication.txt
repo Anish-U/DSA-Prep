@@ -1,0 +1,33 @@
+// OPTIMUM APPROACH
+// TC: O(N)- No of elements in product array
+// SC: O(1)
+
+void matrixMultiplication(vector<vector<int>> mat1, vector<vector<int>> mat2) {
+  int r1 = mat1.size();
+  int c1 = mat1[0].size();
+  
+  int r2 = mat2.size();
+  int c2 = mat2[0].size();
+
+  if(c1 != r2) {
+    cout << "Invalid Input";
+    return;
+  }
+
+  vector<vector<int>> product (r1, vector<int>(c2, 0));
+
+  for(int i = 0; i < product.size(); i++) {
+    for(int j = 0; j < product[0].size(); j++) {
+      for(int k = 0; k < c1; k++) {
+        product[i][j] += mat1[i][k] + mat2[k][j];
+      }
+    }
+  }
+
+  for(int i = 0; i < product.size(); i++) {
+    for(int j = 0; j < product[0].size(); j++) {
+      cout << product[i][k] << " ";
+    }
+    cout << endl;
+  }
+}
