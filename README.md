@@ -1,6 +1,16 @@
 # DSA-Prep
 
-#### Binary Tree
+### Topics
+
+- #### [Binary Trees](https://github.com/Anish-U/DSA-Prep#binary-tree)
+
+- #### [Stack And Queue](https://github.com/Anish-U/DSA-Prep#stack--queue)
+
+- #### [Matrix](https://github.com/Anish-U/DSA-Prep#matrix)
+
+---
+
+### Binary Tree
 
 ###### 1<sup>st</sup> May 2021
 
@@ -78,7 +88,7 @@
 
 ---
 
-#### Stack & Queue
+### Stack & Queue
 
 ###### 7<sup>th</sup> May 2021
 
@@ -146,7 +156,7 @@
 
 ---
 
-#### Matrix
+### Matrix
 
 ###### 10<sup>th</sup> May 2021
 
@@ -159,6 +169,8 @@
 4. [Row with maximum no of 1's](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/04_rowWithMaximumNoOf1s.txt)
 
 ---
+
+###### 11<sup>th</sup> May 2021
 
 5. [Sort a 2D Matrix that is Row Sorted](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/05_sort2DMatrix.txt)
 
@@ -179,3 +191,21 @@
 13. [Saddle Point of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/13_saddlePointOfMatrix.txt)
 
 14. [Shell Rotate of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/14_shellRotateMatrix.txt)
+
+---
+
+###### 12<sup>th</sup> May 2021
+
+15. [Toeplitz Matrix LC_766](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/15_toeplitzMatrix_766.txt)
+
+16. [Set Matrix Zeroes LC_73](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/16_setMatrixZeroes_73.txtx)
+
+17. [Matrix Diagonal Sum LC_1572](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/17_matrixDiagonalSum_1572.txt)
+
+18. [01 Matrix LC_542](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/18_01Matrix_542.txt)
+
+19. [Spiral Matrix II LC_59](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/19_spiralMatrixII_59.txt)
+
+20. [Sort Matrix Diagonally LC_1329](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/20_sortMatrixDiagonally_1329.txt)
+
+21. [Exit Point of a Matrix](https://github.com/Anish-U/DSA-Prep/blob/master/Matrix/21_exitPointOfMatrix.txt)
