@@ -6,7 +6,7 @@
 
 - #### [Stack And Queue](https://github.com/Anish-U/DSA-Prep#stack--queue)
 
-- #### [Matrix](https://github.com/Anish-U/DSA-Prep#matrix)
+- #### [Matrix](https://github.com/Anish-U/DSA-Prep#matrix-1)
 
 ---
 
@@ -58,7 +58,7 @@
 
 20. [Add One More Row to Binary Tree LC_623](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/20_addOneRowToTree_623.txt)
 
-21. [Coundary Traversal of a Binary Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/21_boundaryTraversal.txt)
+21. [Boundary Traversal of a Binary Tree](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/21_boundaryTraversal.txt)
 
 ---
 
@@ -68,7 +68,7 @@
 
 23. [Binary Tree to Doubly Linked List](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/23_binaryTreeToDoublyLinkedList.txt)
 
-24. [Consttruct Tree from Inorder & Preorder LC_105](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/24_constructTreeFromInorder%26Preorder_105.txt)
+24. [Construct Tree from Inorder & Preorder LC_105](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/24_constructTreeFromInorder%26Preorder_105.txt)
 
 25. [Maximum Level Sum of a Tree LC_1161](https://github.com/Anish-U/DSA-Prep/blob/master/Binary_Tree/25_maximumLevelSumOfTree_1161.txt)
 
@@ -92,13 +92,13 @@
 
 ###### 7<sup>th</sup> May 2021
 
-1. [Stack Implementaation](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/01_stackImplementation.txt)
+1. [Stack Implementation](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/01_stackImplementation.txt)
 
 2. [Queue Implementation](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/02_queueImplementation.txt)
 
 3. [Implementation of two stacks in an array](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/03_implementTwoStackInArray.txt)
 
-4. [Stack with Middle element operarions](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/04_stackWithMiddleElementOperations.txt)
+4. [Stack with Middle element operations](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/04_stackWithMiddleElementOperations.txt)
 
 5. [Valid Parenthesis Check LC_20](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/05_validParenthesisCheck_20.txt)
 
@@ -120,7 +120,7 @@
 
 14. [Sort Stack](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/14_sortStack.txt)
 
-15. [Paranthesis Score LC_586](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/15_paranthesesScore_856.txt)
+15. [Parenthesis Score LC_586](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/15_paranthesesScore_856.txt)
 
 ---
 
@@ -128,7 +128,7 @@
 
 16. [Merge Overlapping Intervals LC_56](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/16_mergeOverlappingIntervals_56.txt)
 
-17. [Longest Valid Substring Paranthesis length](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/17_validSubstringLength.txt)
+17. [Longest Valid Substring Parenthesis length](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/17_validSubstringLength.txt)
 
 18. [Check for redundant parenthesis in the string](https://github.com/Anish-U/DSA-Prep/blob/master/Stack_Queue/18_checkRedundancyParenthesis.txt)
 
