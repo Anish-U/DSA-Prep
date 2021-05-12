@@ -1,0 +1,50 @@
+// OPTIMUM APPROACH 
+
+vector<int> FindExitPoint(vector<vector<int>>&matrix){
+  int i = 0;
+  int j = 0;
+  int r = matrix.size();
+  int c = matrix[0].size();
+
+  // EAST => 0
+  // SOUTH => 1
+  // WEST => 2
+  // NORTH => 3
+  int dir = 0;
+
+  while(true) {
+    // East
+    dir = (dir + matrix[i][j]) % 4;
+    matrix[i][j] = 0;
+    if(dir == 0) { // east
+      j++;
+    }
+    else if(dir == 1){ // south
+      i++;
+    }
+    else if(dir == 2){ // west
+      j--;
+    }
+    else if(dir == 3){ // north
+      i--;
+    }
+
+    if(i < 0) {
+      i++;
+      break;
+    }
+    else if(j < 0){
+      j++;
+      break;
+    }
+    else if(i == r) {
+      i--;
+      break;
+    }
+    else if(j == c) {
+      j--;
+      break;
+    }
+  }
+  return {i, j};
+}

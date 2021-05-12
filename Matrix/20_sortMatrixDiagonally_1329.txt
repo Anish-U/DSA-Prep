@@ -1,0 +1,94 @@
+// NAIVE APPROACH
+// TC: O( (M + N)*(K * logK) )
+// SC: O(K)
+// M => rows, N => cols, K => min(M, N)
+
+vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+  int r = mat.size();
+  int c = mat[0].size();
+  
+  for(int k = 0; k < c; k++) {
+    int i = 0;
+    int j = k;
+    vector<int> diag;
+    while(i <= r - 1 && j <= c - 1) {
+      diag.push_back(mat[i++][j++]);
+    }
+    sort(diag.begin(), diag.end());
+    
+    i = 0;
+    j = k;
+    int count{};
+    while(i <= r - 1 && j <= c - 1) {
+      mat[i++][j++] = diag[count++];
+    }
+  }
+  
+  for(int k = 1; k < r; k++) {
+    int i = k;
+    int j = 0;
+    vector<int> diag;
+    while(i < r && j < c) {
+      diag.push_back(mat[i++][j++]);
+    }
+    sort(diag.begin(), diag.end());
+    
+    i = k;
+    j = 0;
+    int count{};
+    while(i < r && j < c) {
+      mat[i++][j++] = diag[count++];
+    }
+  }
+  return mat;
+}
+
+// BETTER APPROACH
+// TC: O( (M + N)*(K * logK) )
+// SC: O(K)
+// M => rows, N => cols, K => min(M, N)
+
+vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+  map<int,vector<int>> mapWithVector;
+  for(int i = 0; i < mat.size(); i++)
+    for(int j = 0; j < mat[0].size(); j++)
+      mapWithVector[i - j].push_back(mat[i][j]);
+  
+  for(auto &x:mapWithVector)
+    sort(x.second.begin(), x.second.end());
+  
+  for(int i = 0; i < mat.size(); i++)
+    for(int j = 0; j < mat[i].size(); j++) {
+      int k = i - j;
+      mat[i][j] = mapWithVector[k][0];
+      mapWithVector[k].erase(mapWithVector[k].begin());
+    }
+  return mat;
+}
+
+
+// OPTIMUM APPROACH
+// TC: O( (M + N) * log(K) )
+// SC: O(K)
+// M => rows, N => cols, K => min(M, N)
+
+vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+
+  map<int, priority_queue<int, vector<int>, greater<int>> > mapWithHeap;
+  int m = mat.size();
+  int n = mat[0].size();
+  
+  for(int i = 0; i < m; i++) {
+    for(int j = 0; j < n; j++) {
+      mapWithHeap[i - j].push(mat[i][j]);
+    }
+  }
+
+  for(int i = 0; i < m; i++) {
+    for(int j = 0; j < n; j++) {
+      mat[i][j] = mapWithHeap[i - j].top();
+      mapWithHeap[i - j].pop();
+    }
+  }
+  return mat;
+}

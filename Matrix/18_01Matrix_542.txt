@@ -1,0 +1,72 @@
+// NAIVE APPROACH
+// TC: O(N ^ 2)- no of elements in matrix
+// SC: O(1)
+
+vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+  if(mat.size() == 0 || mat[0].size() == 0)
+    return mat;
+  
+  int r = mat.size();
+  int c = mat[0].size();  
+  vector<vector<int>> disZero(r, vector<int>(c, INT_MAX));
+  
+  for(int i = 0; i < r; i++) {
+    for(int j = 0; j < c; j++) {
+      if(mat[i][j] == 0)
+        disZero[i][j] = 0;
+      else {
+        for(int i1 = 0; i1 < r; i1++) {
+          for(int j1 = 0; j1 < c; j1++) {
+            if(mat[i1][j1] == 0) {
+              int dis = abs(i1 - i) + abs(j1 - j);
+              disZero[i][j] = min(disZero[i][j], dis);
+            }
+          }
+        }
+      }
+    }
+  } 
+  return disZero;
+}
+
+// OPTIMUM APPROACH - BFS
+// TC: O(N)
+// SC: O(1)
+
+vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+  if(mat.size() == 0 || mat[0].size() == 0)
+  return {};
+
+  int r = mat.size();
+  int c = mat[0].size();  
+  vector<vector<int>> disZero(r, vector<int>(c, INT_MAX));
+
+  queue<pair<int, int>> Queue;
+  
+  for(int i = 0; i < r; i++) {
+    for(int j = 0; j < c; j++) {
+      if(mat[i][j] == 0) {
+        disZero[i][j] = 0;
+        Queue.push({i, j});
+      }
+    }
+  }
+  
+  vector<vector<int>> dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+  while(!Queue.empty()) {
+    auto curr = Queue.front();
+    Queue.pop();
+    for(int i = 0; i < dir.size(); i++) {
+      int x = curr.first + dir[i][0];
+      int y = curr.second + dir[i][1];
+      
+      if(x >= 0 && y >= 0 && x < r && y < c) {
+        if(disZero[x][y] > disZero[curr.first][curr.second] + 1) {
+          disZero[x][y] = disZero[curr.first][curr.second] + 1;
+          Queue.push({x, y});
+        }
+      }
+    }
+  }  
+  return disZero;
+}

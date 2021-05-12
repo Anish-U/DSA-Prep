@@ -1,0 +1,44 @@
+// NAIVE APPROACH
+// TC: O(N)- no of elements in matrix
+// SC: O(m + n)- m => rows, n => cols
+
+bool isToeplitzMatrix(vector<vector<int>>& mat) {
+  int m = mat.size();
+  int n = mat[0].size();
+  unordered_map<int, int> diffValues;
+  
+  for(int i = 0; i < m; i++) {
+    for(int j = 0; j < n; j++) {
+      int diff = i - j;
+      if(diffValues.find(diff) == diffValues.end()) {
+        diffValues[diff] = mat[i][j];
+      }
+      else {
+        if(diffValues[diff] != mat[i][j]) {
+          return false;
+        }
+      }
+    }
+  }
+  
+  return true;
+}
+
+// OPTIMUM APPROACH
+// TC: O(N)- no of elements in matrix
+// SC: O(1)
+
+bool isToeplitzMatrix(vector<vector<int>>& mat) {
+  int m = mat.size();
+  int n = mat[0].size();
+  
+  for(int i = 1; i < m; i++) {
+    for(int j = 1; j < n; j++) {
+      if(mat[i][j] != mat[i - 1][j - 1]) {
+        return false;
+      }
+    }
+  }
+  
+  return true;
+}

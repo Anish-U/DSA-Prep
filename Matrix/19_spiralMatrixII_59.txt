@@ -1,0 +1,45 @@
+// OPTIMUM APPROACH - SHELL BY SHELL TRAVERSAL
+// TC: O(N^2)
+// SC: O(1)
+
+class Solution {
+public:
+  vector<vector<int>> generateMatrix(int n) {
+    int colBegin = 0;
+    int colEnd = n - 1;
+    int rowBegin = 0;
+    int rowEnd = n - 1;
+
+    int count = 1;
+    vector<vector<int>> spiralMatrix(n, vector<int>(n));
+
+    while(colBegin <= colEnd && rowBegin <= rowEnd) {
+      // tw
+      for(int j = colBegin; j <= colEnd; j++) {
+        spiralMatrix[rowBegin][j] = count++;
+      }
+      
+      // rw
+      for(int i = rowBegin + 1; i <= rowEnd; i++) {
+        spiralMatrix[i][colEnd] = count++;
+      }
+      
+      // bw
+      for(int j = colEnd - 1; j >= colBegin; j--) {
+        spiralMatrix[rowEnd][j] = count++;
+      }
+      
+      // lw
+      for(int i = rowEnd - 1; i > rowBegin; i--) {
+        spiralMatrix[i][colBegin] = count++;
+      }
+      
+      colBegin++;
+      colEnd--;
+      rowBegin++;
+      rowEnd--;
+    }
+    
+    return spiralMatrix;
+  }
+};
